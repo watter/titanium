@@ -7,16 +7,23 @@ module.exports = (function() {
 	
 	//var win1 = require('ui/handheld/WinAula02')(winColor);
 	var win1 = require('ui/handheld/WinAula02')('white');
-	
 	var tab1 = Ti.UI.createTab({
 		title: L('home'),
 		icon: '/images/KS_nav_ui.png',
 		window: win1
 	});
-	
 	win1.containingTab = tab1;
 	
+	var win2 = require('ui/handheld/WinAula03');
+	var tab2 = Ti.UI.createTab({
+		title: L('home'),
+		icon: '/images/KS_nav_ui.png',
+		window: win2
+	});
+	win2.containingTab = tab2;
+	
 	self.addTab(tab1);
+	self.addTab(tab2);
 	
 	return self;
 })();
