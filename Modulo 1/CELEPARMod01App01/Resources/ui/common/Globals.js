@@ -1,3 +1,5 @@
+/* 
+ * Exemplos do dia 09/07
 function somar(a, b) {};
 function dividir(a, b) {};
 exports.session = {};
@@ -10,4 +12,5 @@ exports.calcular = function(operacao, a, b) {
 		somar(a, b)
 	else
 		dividir(a, b);
-};
+}; */
+
