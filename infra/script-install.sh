@@ -66,8 +66,8 @@ titanium config  cli.httpProxyServer http://proxyservico.eparana.parana:8181
 
 cd /home/desenv/mobile/
 
-wget -c -T0 http://10.15.254.143/titanium.linux.gtk.x86_64.zip 
-wget -c -T0 http://10.15.254.143/mobile-env.tar 
+http_proxy=  wget -c -T0 http://10.15.254.143/titanium.linux.gtk.x86_64.zip 
+http_proxy=  wget -c -T0 http://10.15.254.143/mobile-env.tar 
 
 unzip titanium.linux.gtk.x86_64.zip
 tar xvf mobile-env.tar 
