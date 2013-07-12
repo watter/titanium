@@ -75,9 +75,7 @@ module.exports = (function() {
 	
 	var view2 = require('ui/handheld/Aula03ScrollView2');
 	
-	var view3 = Ti.UI.createView({
-		backgroundColor: 'gray'
-	});
+	var view3 = require('ui/handheld/Aula04ScrollView3')(win);
 	
 	var svScroll = Ti.UI.createScrollableView({
 		top: 0,

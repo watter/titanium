@@ -38,6 +38,69 @@ module.exports = (function() {
 		lblSlider.setText('Valor: ' + e.value);
 	});
 	
+	var vwBBAnimate = Ti.UI.createView({
+		height: 50,
+		width: Ti.UI.FILL,
+		bottom: 20,
+		backgroundColor: 'transparent',
+		borderWidth: 3,
+		borderColor: 'black',
+		borderRadius: 10,
+		layout: 'horizontal'
+	});
+	
+	var btnBBAnimate2D = Ti.UI.createButton({
+		title: '2D',
+		height: 45,
+		width: Ti.Platform.displayCaps.platformWidth/2,
+		left: 0
+	});
+	
+	var btnBBAnimatePos = Ti.UI.createButton({
+		title: 'Pos',
+		height: 45,
+		width: Ti.Platform.displayCaps.platformWidth/2,
+		left: 0
+	});
+	
+	btnBBAnimate2D.addEventListener('click', function() {
+		
+		var transform = Ti.UI.create2DMatrix();
+		transform = transform.rotate(180);
+		transform = transform.scale(2.0);
+		
+		vwBox.animate({
+			transform: transform,
+			duration: 2000,
+			autoreverse: true,
+			repeat: 3
+		});
+	});
+	
+	btnBBAnimatePos.addEventListener('click', function() {
+		
+		var transform = Ti.UI.create2DMatrix();
+		transform = transform.rotate(200);
+		transform = transform.scale(2.4);
+		
+		var animation = Ti.UI.createAnimation({
+			transform: transform,
+			top: 0,
+			duration: 2000,
+			repeat: 3,
+			autoreverse: true,
+			backgroundColor: 'red'
+			//anchorPoint: {x: 0, y: 0}
+		});
+		
+		vwBox.animate(animation);
+		
+	});
+	
+	vwBBAnimate.add(btnBBAnimate2D);
+	vwBBAnimate.add(btnBBAnimatePos);
+	
+	view.add(vwBBAnimate);
 	view.add(lblSlider);
 	view.add(slSlider);
 	view.add(vwBox);
