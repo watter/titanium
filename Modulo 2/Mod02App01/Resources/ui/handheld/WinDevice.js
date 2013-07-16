@@ -102,9 +102,49 @@ module.exports = (function () {
 		}
 	});
 	
+	var btnCamera = Ti.UI.createButton({
+		title: 'Camera',
+		height: '60dp',
+		width: '110dp',
+		top: '20dp'
+	});
+	
+	btnCamera.addEventListener('click', function() {
+		
+		function successCallback(e) {
+			
+			win.setBackgroundImage(e.media);
+			
+		};
+		
+		function cancelCallback() {
+			
+		};
+		
+		function errorCallback(e) {
+			
+			if(e.code == Ti.Media.NO_CAMERA) {
+				
+				alert('Dispositivo não possui câmera');
+			} else {
+				
+				alert('Erro: ' + e.code);
+			}
+			
+		};
+		
+		Ti.Media.showCamera({
+			success: successCallback,
+			cancel: cancelCallback,
+			error: errorCallback,
+			saveToPhotoGallery: true
+		});
+	});
+	
 	win.add(lblAcelerometro);
 	win.add(btnStart);
 	win.add(btnStop);
+	win.add(btnCamera);
 	
 	return win;
 	
