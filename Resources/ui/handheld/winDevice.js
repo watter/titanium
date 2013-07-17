@@ -1,6 +1,6 @@
 module.exports= (function(){
 	
-		var win = Ti.UI.createWindow({
+	var win = Ti.UI.createWindow({
 		title: 'Device',
 		backgroundColor: 'white',
 		layout: 'vertical'
