@@ -23,6 +23,20 @@ module.exports= (function(){
 	});	
 	
 	tvAppInfo.addEventListener('click', function(e){
+		
+		var usuario = {
+			nome: 'Fulano',
+			telefone: '32325464'
+		};
+		
+		Ti.API.info('WinApp - Serializando string em JSON a partir de um obj' + JSON.stringify(usuario));
+		
+		Ti.App.Properties.setString('usuario', JSON.stringify(usuario));
+
+		var retornoUsuario = JSON.parse(Ti.App.Properties.getString('usuario'));
+		Ti.API.info('WinApp - Retornando do \'parse\' ing em JSON a partir de um obj: ' + retornoUsuario.nome + retornoUsuario.telefone );
+
+
 		if (typeof e.source.tipo !== 'undefined') {
 			
 			if (e.source.tipo === 'nome') {
