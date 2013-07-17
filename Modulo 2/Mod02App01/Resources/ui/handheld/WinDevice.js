@@ -113,8 +113,12 @@ module.exports = (function () {
 		
 		function successCallback(e) {
 			
-			win.setBackgroundImage(e.media);
+			var imgFoto = Ti.UI.createImageView({
+				image: e.media,
+				zIndex: 0
+			});
 			
+			win.add(imgFoto);
 		};
 		
 		function cancelCallback() {
