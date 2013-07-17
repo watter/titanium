@@ -29,6 +29,7 @@ module.exports = (function() {
 	
 	tvAppInfo.addEventListener('click', function(e) {
 		
+		//Objeto exemplo para demonstração JSON
 		var usuario = {
 			nome: 'Fulano', 
 			telefone: '33333333'
