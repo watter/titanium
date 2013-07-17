@@ -1,4 +1,4 @@
-module.exports= function(){
+module.exports= (function(){
 
 	// Criamos um objeto que será nossa própria API do banco de dados
 	var api= {};
@@ -16,13 +16,21 @@ module.exports= function(){
 	db.close();
 	
 	api.adicionarPessoa = function( /*objeto */ pessoa ){
+
+		var _db = Ti.Database.open('pessoas');
+		 
 		// usamos a mesma função <execute> para fazer um INSERT comum
-		db.execute('INSERT INTO usuarios (nome, email) VALUES (?,?)', pessoa.nome, pessoa.email);
+		_db.execute('INSERT INTO usuarios (nome, email) VALUES (?,?)', pessoa.nome, pessoa.email);
+		
+		
+		lastRow = _db.lastInsertRowId;
+		
+		_db.close();
 		
 		// E retornamos o ID da linha inserida no banco para eventuais referências
 		// Esta é uma propriedade constante do objeto do banco de dados e é atualizada 
 		// com o valor da última linha inserida a cada operação
-		return db.lastInsertRowId;
+		return lastRow;
 	}
 
 
@@ -31,7 +39,9 @@ module.exports= function(){
 		
 		var pessoas = [];
 		
-		var resultado = db.execute('SELECT * FROM usuarios');
+		var _db = Ti.Database.open('pessoas');
+		
+		var resultado = _db.execute('SELECT * FROM usuarios');
 		
 		while(resultado.isValidRow()){
 			pessoas.push({
@@ -40,13 +50,15 @@ module.exports= function(){
 				email: resultado.fieldByName('email')
 			});
 			
-			resultado.next;
+			resultado.next();
 		}
 		
-		resultado.close;
-		
+		resultado.close();
+
+		_db.close();
+	
 		return pessoas;
 	}; 
 	
 	return api;
-};
+})();

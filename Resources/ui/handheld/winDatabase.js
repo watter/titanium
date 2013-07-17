@@ -31,7 +31,7 @@ module.exports= (function(){
 			Ti.API.info('Database - listando usuários no banco. | Nome: ' + 
 				listaUsuarios[i].nome + ' | email: ' + listaUsuarios[i].email);
 		}
-		
+		alert(listaUsuarios);
 	});
 
 	win.add(btnInserir);
