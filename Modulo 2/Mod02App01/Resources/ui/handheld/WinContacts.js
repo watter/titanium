@@ -51,6 +51,20 @@ module.exports = (function() {
 				}
 			});
 			
+			//Usamos o módulo Ti.App para atirar (e escutar)
+			//por eventos customizados de qualquer lugar do app
+			//para qualquer lugar do app.
+			//Por definição de boas práticas, adicionamos o
+			//prefixo 'app:' ao nome dos nossos eventos customizados
+			//para evitar conflito com um eventos do próprio Titanium
+			Ti.App.fireEvent('app:NovoContato', {
+					firstName: txtNome.value,
+					lastName: txtSobrenome.value,
+					phone: {
+						mobile: [txtTelefone.value]
+					}
+				});
+			
 			Ti.API.info('Contato adicionado!');
 		} else {
 					

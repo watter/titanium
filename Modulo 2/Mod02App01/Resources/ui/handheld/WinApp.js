@@ -29,6 +29,18 @@ module.exports = (function() {
 	
 	tvAppInfo.addEventListener('click', function(e) {
 		
+		var usuario = {
+			nome: 'Fulano', 
+			telefone: '33333333'
+		};
+		
+		Ti.API.info('WinApp - serializando string em JSON de um objeto. ' + JSON.stringify(usuario));
+		Ti.App.Properties.setString('usuario', JSON.stringify(usuario));
+		
+		var retornoUsuario = JSON.parse(Ti.App.Properties.getString('usuario'));
+		Ti.API.info('WinApp - retornando e \'parseando\' uma string de JSON: ' + retornoUsuario);
+		
+		
 		if(typeof e.source.tipo !== 'undefined') {
 			
 			if(e.source.tipo === 'nome') {
@@ -51,6 +63,14 @@ module.exports = (function() {
 				}
  			} 
 		}
+	});
+	
+	//Usamos o módulo Ti.App para escutar por um evento
+	//que é disparado manualmente de outro ponto do código.
+	//Aqui recebemos o evento como qualquer outro.
+	Ti.App.addEventListener('app:NovoContato', function(e) {
+		
+		Ti.API.info('WinApp - Novo contato recebido: ' + JSON.stringify(e));
 	});
 	
 	win.add(tvAppInfo);
