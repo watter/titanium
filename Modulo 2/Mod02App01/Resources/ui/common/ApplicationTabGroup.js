@@ -6,7 +6,8 @@ function ApplicationTabGroup(Window) {
 	var win1 = require('ui/handheld/WinHome'),
 		win2 = require('ui/handheld/WinContacts'),
 		win3 = require('ui/handheld/WinMedia'),
-		win4 = require('ui/handheld/WinDevice');
+		win4 = require('ui/handheld/WinDevice'),
+		win5 = require('ui/handheld/WinApp');
 	
 	var tab1 = Ti.UI.createTab({
 		title: L('home'),
@@ -36,10 +37,18 @@ function ApplicationTabGroup(Window) {
 	});
 	win4.containingTab = tab4;
 	
+	var tab5 = Ti.UI.createTab({
+		title: 'App',
+		icon: '/images/KS_nav_views.png',
+		window: win5
+	});
+	win5.containingTab = tab5;
+	
 	self.addTab(tab1);
 	self.addTab(tab2);
 	self.addTab(tab3);
 	self.addTab(tab4);
+	self.addTab(tab5);
 	
 	return self;
 };
