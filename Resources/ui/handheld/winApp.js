@@ -48,6 +48,11 @@ module.exports= (function(){
 	});
 	
 	
+	Ti.App.addEventListener('app:NovoContato', function(e){
+		Ti.API.info('Novo Contato Recebido: ' + JSON.stringify(e));
+		
+	});
+	
 	win.add(tvAppInfo);
 	
 	return win;

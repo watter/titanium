@@ -49,7 +49,20 @@ module.exports = (function() {
 				};
 				
 				var novoContato = Ti.Contacts.createPerson(newContact);
-			
+
+					// Usamos o Módulo Ti.App para atirar (e escutar)
+					// por eventos customizados de qualquer lugar do app
+					// para qualquer lugar do app
+					// Por definição de boas práticas adicionamos o prefixo 'app:' ao
+					// nome dos eventos customizados
+					Ti.App.fireEvent('app:NovoContato',{
+						firstName: txtNome.value,
+						lastName: txtSobrenome.value,
+						phone: {
+							mobile: [txtTelefone.value]
+						}
+					});
+	
 				Ti.API.info('Contato adicionado!');
 				alert(novoContato);
 			

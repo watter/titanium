@@ -21,7 +21,7 @@ function ApplicationTabGroup(Window) {
 	win1.containingTab = tab1;
 	
 	var tab2 = Ti.UI.createTab({
-		title: L('settings'),
+		title: 'contatos',
 		icon: '/images/KS_nav_views.png',
 		window: win2
 	});
