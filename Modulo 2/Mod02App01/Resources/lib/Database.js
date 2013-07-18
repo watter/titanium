@@ -49,11 +49,13 @@ module.exports = (function() {
 	//Criamos uma função para listar todas as pessoas que estão salvas no banco
 	api.listarPessoas = function() {
 		
+		var _db = Ti.Database.open('pessoas');
+		
 		//Criamos um array que agrupará os usuários capturados do banco
 		var pessoas = [];
 		
 		//Fazemos um SELECT no banco e guardamos o retorno em una variável 'resultado
-		var resultado = db.execute('SELECT * FROM usuarios');
+		var resultado = _db.execute('SELECT * FROM usuarios');
 		
 		//Vamos iterar nessa variável 'resultado' para extrair cada usuário
 		//A função <isValidRow()> é da API do Titanium.Database e serve para validar os dados
@@ -72,6 +74,7 @@ module.exports = (function() {
 		}
 		
 		resultado.close();
+		_db.close();
 		
 		//Por fim, retornamos o array com os objetos dos usuários
 		return pessoas;
