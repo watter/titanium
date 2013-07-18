@@ -18,13 +18,16 @@ module.exports = (function() {
 	//var db = Ti.Database.install('dbPessoas', 'dbPessoasInstalado');
 	//Nesse caso, fazemos a instalação do arquivo chamado dbPessoas,
 	//que será instalado com o nome de dbPessoasInstalado. 
+	
+	db.execute('DROP TABLE IF EXISTS usuarios');
 
 	//Uma vez com a conexão ao banco aberta, podemos manipular
 	//este banco executando queries SQL pela função <execute>
 	db.execute('CREATE TABLE IF NOT EXISTS usuarios(' + 
 											'id INTEGER PRIMARY KEY, ' +
 											'nome TEXT, ' + 
-											'email TEXT)');
+											'email TEXT, ' + 
+											'foto TEXT)');
 	
 	//Fechamos a conexão após o uso para evitar pools de conexão
 	db.close();
@@ -34,7 +37,7 @@ module.exports = (function() {
 		var _db = Ti.Database.open('pessoas');
 		
 		//Usamos a mesma função <execute> para fazer um INSERT comum
-		_db.execute('INSERT INTO usuarios (nome, email) VALUES (?, ?)', pessoa.nome, pessoa.email);
+		_db.execute('INSERT INTO usuarios (nome, email, foto) VALUES (?, ?, ?)', pessoa.nome, pessoa.email, pessoa.foto);
 		
 		var lastRow = _db.lastInsertRowId; 
 		
@@ -65,7 +68,8 @@ module.exports = (function() {
 			pessoas.push({
 				id: resultado.fieldByName('id'),
 				nome: resultado.fieldByName('nome'),
-				email: resultado.fieldByName('email')
+				email: resultado.fieldByName('email'),
+				foto: resultado.fieldByName('foto')
 			});
 			
 			//Acionamos a função <next()> também da API Ti.Database para

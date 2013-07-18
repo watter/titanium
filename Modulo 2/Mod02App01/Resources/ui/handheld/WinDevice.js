@@ -113,12 +113,35 @@ module.exports = (function () {
 		
 		function successCallback(e) {
 			
-			var imgFoto = Ti.UI.createImageView({
-				image: e.media,
-				zIndex: 0
+			var img = e.media;
+			
+			var nomeDoArquivo = Ti.Filesystem.applicationDataDirectory + 
+			'/camera_foto' + new Date().getTime() + '.png';
+			
+			var arquivo = Ti.Filesystem.getFile(nomeDoArquivo);
+			
+			var db = require('/lib/Database');
+			
+			db.adicionarPessoa({
+				nome: 'José',
+				email: 'jose@gmail.com',
+				foto: arquivo.nativePath
 			});
 			
-			win.add(imgFoto);
+			if(arquivo.write(img)) {
+				
+				Ti.API.info('Imagem salva com sucesso!');
+				
+				var diretorio = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory);
+				
+				Ti.API.info('Listagem do diretório: ' + diretorio.getDirectoryListing());
+				
+				var pessoas = db.listarPessoas();
+				for(var i in pessoas) {
+					Ti.API.info('Pessoa: ' + pessoas[i].nome + '\n' +
+									'Foto: ' + pessoas[i].foto);
+				}
+			}
 		};
 		
 		function cancelCallback() {
