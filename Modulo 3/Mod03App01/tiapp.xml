@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>br.gov.pr.celepar.Mod03App01</id>
+    <name>Mod03App01</name>
+    <version>1.0</version>
+    <publisher>bernardosoliveira</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2013 by bernardosoliveira</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>f5a88a41-af35-4e10-9505-87b42928153b</guid>
+    <property name="ti.ui.defaultunit" type="string">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+    	<manifest>
+		    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15" />
+		    <supports-screens
+		        android:smallScreens="false"
+		        android:normalScreens="true"
+		        android:largeScreens="true"
+		        android:anyDensity="false"
+		    />
+		    
+		    <uses-permission android:name='android.permission.READ_CONTACTS'/>
+		    <uses-permission android:name='android.permission.WRITE_CONTACTS'/>
+		    
+		    <application>
+		        <uses-library android:name="com.google.android.maps"/>  
+		    </application>
+		</manifest>
+	</android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules/>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">false</target>
+        <target device="mobileweb">false</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.1.1.GA</sdk-version>
+</ti:app>
