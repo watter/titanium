@@ -42,6 +42,83 @@ module.exports = (function() {
 				Ti.API.info('Dialog - Botão ' + e.index);
 				Ti.API.info('Dialog - Is button? ' + e.button);
 				Ti.API.info('Dialog - Botão Cancelar? ' + e.cancel);
+				
+				if(e.index == 2) {
+					
+					var pickerCarros = Ti.UI.createPicker({
+						useSpinner: true
+					});
+					
+					var coluna1 = Ti.UI.createPickerColumn(),
+						coluna2 = Ti.UI.createPickerColumn();
+					
+					var carros = ['Ferrari Enzo', 'Lamborghini Gallardo', 'Porsche Carrera'],
+						cores = ['Vermelho', 'Branco', 'Preto'];
+						
+					for(var i = 0, s = carros.length; i < s; i++) {
+						
+						var row = Ti.UI.createPickerRow({
+							title: carros[i]
+						});
+						
+						coluna1.addRow(row);
+					}
+					
+					for(var i = 0, s = cores.length; i < s; i++) {
+						
+						var row = Ti.UI.createPickerRow({
+							title: cores[i]
+						});
+						
+						coluna2.addRow(row);
+					}
+					
+					pickerCarros.add([coluna1, coluna2]);
+					
+					pickerCarros.addEventListener('change', function(e) {
+						
+						Ti.API.info('PickerCarros - Coluna: ' + e.column);
+						Ti.API.info('PickerCarros - Índice Coluna: ' + e.columnIndex);
+						Ti.API.info('PickerCarros - Linha: ' + e.row.title);
+						Ti.API.info('PickerCarros - Valor Selecionado: ' + e.selectedValue);
+					});
+					
+					win.add(pickerCarros);
+				} else if(e.index == 3) {
+					
+					var pickerData = Ti.UI.createPicker({
+						type: Ti.UI.PICKER_TYPE_DATE,
+						minDate: new Date(1990, 0, 1),
+						maxDate: new Date(),
+						value: new Date(),
+						//backgroundColor: 'gray',
+						useSpinner: true
+					});
+					
+					pickerData.addEventListener('change', function(e) {
+						
+						Ti.API.info('PickerData - Data selecionada: ' + e.value.toLocaleString());
+					});
+					
+					win.add(pickerData);
+				} else if(e.index == 4) {
+					
+					var pickerDataHora = Ti.UI.createPicker({
+						type: Ti.UI.PICKER_TYPE_DATE_AND_TIME,
+						minDate: new Date(1990, 0, 1),
+						maxDate: new Date(),
+						value: new Date(),
+						//backgroundColor: 'gray',
+						useSpinner: true
+					});
+					
+					pickerDataHora.addEventListener('change', function(e) {
+						
+						Ti.API.info('PickerData - Data selecionada: ' + e.value.toLocaleString());
+					});
+					
+					win.add(pickerDataHora);
+				}
 			});
 			
 			dialog.show();
