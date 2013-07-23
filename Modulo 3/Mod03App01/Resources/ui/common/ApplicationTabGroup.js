@@ -3,7 +3,8 @@ function ApplicationTabGroup(Window) {
 	var self = Ti.UI.createTabGroup();
 	
 	//create app tabs
-	var win1 = require('ui/handheld/WinHome');
+	var win1 = require('ui/handheld/WinHome'),
+		win2 = require('ui/handheld/WinUsers');
 	
 	var tab1 = Ti.UI.createTab({
 		title: L('home'),
@@ -12,15 +13,15 @@ function ApplicationTabGroup(Window) {
 	});
 	win1.containingTab = tab1;
 	
-	/*var tab2 = Ti.UI.createTab({
+	var tab2 = Ti.UI.createTab({
 		title: L('settings'),
 		icon: '/images/KS_nav_views.png',
 		window: win2
 	});
-	win2.containingTab = tab2;*/
+	win2.containingTab = tab2;
 	
 	self.addTab(tab1);
-	//self.addTab(tab2);
+	self.addTab(tab2);
 	
 	return self;
 };
