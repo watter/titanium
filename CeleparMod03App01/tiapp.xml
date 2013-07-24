@@ -50,7 +50,10 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <!--  Acrescentar módulo para Integração com Facebook / FB -->
+    <modules>
+		<module platform="android">facebook</module>
+    </modules>
     <deployment-targets>
         <target device="iphone">false</target>
         <target device="ipad">false</target>
