@@ -29,23 +29,17 @@
         </orientations>
     </iphone>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
-    	<manifest>
-		    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15" />
-		    <supports-screens
-		        android:smallScreens="false"
-		        android:normalScreens="true"
-		        android:largeScreens="true"
-		        android:anyDensity="false"
-		    />
-		    
-		    <uses-permission android:name='android.permission.READ_CONTACTS'/>
-		    <uses-permission android:name='android.permission.WRITE_CONTACTS'/>
-		    
-		    <application>
-		        <uses-library android:name="com.google.android.maps"/>  
-		    </application>
-		</manifest>
-	</android>
+        <manifest>
+            <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15"/>
+            <supports-screens android:anyDensity="false"
+                android:largeScreens="true" android:normalScreens="true" android:smallScreens="false"/>
+            <uses-permission android:name="android.permission.READ_CONTACTS"/>
+            <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+            <application>
+                <uses-library android:name="com.google.android.maps"/>
+            </application>
+        </manifest>
+    </android>
     <mobileweb>
         <precache/>
         <splash>
@@ -54,7 +48,9 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="android">facebook</module>
+    </modules>
     <deployment-targets>
         <target device="android">true</target>
         <target device="blackberry">false</target>
