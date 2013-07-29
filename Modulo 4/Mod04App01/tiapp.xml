@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">bxpMw6gWoD8ARxrWEoC7BewQFiYHzZEX</property>
+    <property name="acs-oauth-key-production" type="string">Jg3bV5EOfot3xuw24JuiMk5zebOAY0sh</property>
+    <property name="acs-api-key-production" type="string">EErl1Km04UHziWwYVkcIvCXLvcfJhKHz</property>
+    <property name="acs-oauth-secret-development" type="string">JoJrStiz1QR8QhpFmvOp8TGIMYn6Hqhx</property>
+    <property name="acs-oauth-key-development" type="string">g1PgU4hq5FbDPpRPsYPHMaLrM5F7w3z2</property>
+    <property name="acs-api-key-development" type="string">xtG0gSBK5aNJgCBI4d79O75Gm4bKsTcy</property>
+    <id>br.gov.pr.celepar.Mod04App01</id>
+    <name>Mod04App01</name>
+    <version>1.0</version>
+    <publisher>bernardosoliveira</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2013 by bernardosoliveira</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>7b837e0d-8c30-4401-8060-b46697e10952</guid>
+    <property name="ti.ui.defaultunit" type="string">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest android:installLocation="auto">
+            <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15"/>
+            <supports-screens android:anyDensity="false"
+                android:largeScreens="true" android:normalScreens="true" android:smallScreens="false"/>
+            <!-- 
+            	<uses-permission android:name="android.permission.READ_CONTACTS"/>
+            	<uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+            -->
+            <!-- Acessar localização enviada através do DDMS -->
+            <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+            <!-- Acessar módulos de localização GPS, Network e Passive -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <application>
+                <uses-library android:name="com.google.android.maps"/>
+            </application>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs">ti.cloud</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">false</target>
+        <target device="mobileweb">false</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.1.1.GA</sdk-version>
+</ti:app>
