@@ -5,6 +5,9 @@ module.exports = (function() {
 		backgroundColor: 'white'
 	});
 	
+	//Blob de arquivo para upload
+	var file;
+	
 	function downloadImage(imageUrl) {
 		
 		var xhr = Ti.Network.createHTTPClient();
@@ -30,6 +33,16 @@ module.exports = (function() {
 		};
 				
 		xhr.send();
+		
+		/* para upload de arquivos, é necessário enviar
+		 * um objeto de parâmetro na função send() com o blob
+		 * do arquivo a ser enviado para o servidor.
+		 * xhr.send({
+		 * 	file: file,
+		 * 	user: user_hash,
+		 * 	password: user_pass
+		 * });
+		 */
 	};
 	
 	var progress = Ti.UI.createProgressBar({

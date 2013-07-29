@@ -598,46 +598,6 @@
     	var re = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
     	return re.test(a);
     };
-    b.isOldDate = function(a) {
-    	var currentDate = new Date(),
-        	cDay = currentDate.getDate(),
-        	cMonth = currentDate.getMonth()+1,
-        	cYear = currentDate.getFullYear(),
-        	cHour = currentDate.getHours(),
-        	cMin = currentDate.getMinutes(),
-        	day = a.day, 
-        	month = a.month,
-        	year = a.year,
-        	hour = a.hour,
-        	minutes = a.minutes,
-    		validDate = true, 
-    		validTime = true;
-
-    	if((day < cDay && month == cMonth && year == cYear) || (month < cMonth && year <= cYear) || (year < cYear)) {
-    		validDate = false;
-    	}
-    	
-    	/*info('[underscore - isOldDate] Checking ' 
-    	+ 'day:\n' + day + ' | cDay: ' + cDay 
-    	+ '\nmonth: ' + month + ' | cMonth: ' + cMonth
-    	+ ' \nyear: ' + year + ' | cYear: ' + cYear 
-    	+ '\nhour: ' + hour  + ' | cHour: ' + cHour 
-    	+ '\nminutes: ' + minutes + ' | cMin: ' + cMin);*/
-    	
-		if(((day == cDay) && (month == cMonth) && (year == cYear)) && ((parseInt(hour) < parseInt(cHour)) || ((parseInt(hour) == parseInt(cHour)) && (minutes < cMin)))) {
-			
-			/*info('[underscore - isOldDate] Invalid time. \n'
-			+ '\nhour: ' + hour  + ' | cHour: ' + cHour 
-			+ '\nminutes: ' + minutes + ' | cMin: ' + cMin);*/
-			
-			validTime = false;
-		}
-		return {
-			isValid: (validDate && validTime ? true : false),
-			isValidDate: validDate,
-			isValidTime: validTime
-		};
-    }
     var N = 0;
     b.uniqueId = function(a) {
         var b = N++;
