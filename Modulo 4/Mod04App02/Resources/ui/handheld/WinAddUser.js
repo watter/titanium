@@ -57,8 +57,7 @@ module.exports = (function() {
 	
 	btnAddUser.addEventListener('click', function() {
 		
-		var Cloud = require('ti.cloud');
-		Cloud.Users.create({
+		$.cloud.Users.create({
 			username: txtUserName.value,
 			password: txtPassword.value,
 			password_confirmation: txtPasswordConfirmation.value,
@@ -69,11 +68,15 @@ module.exports = (function() {
 			if(e.success) {
 				
 				var user = e.users[0];
-				alert(user);
-				Ti.API.info('Create User - User ID:' + user.id + ' | Session ID: ' + Cloud.sessionId);
+				Ti.API.info('Create User - User ID:' + user.id + ' | Session ID: ' + $.cloud.sessionId);
+				
+				$.session.logged = true;
+				Ti.App.Properties.setBool('userLogged', $.session.logged);
+				
+				new $.tabs().open();
 			} else {
 				
-				alert('Erro: ' + e.error);
+				Ti.API.info('Create User Error - ' + e.message);
 			}
 		})
 	});
