@@ -3,4 +3,6 @@
 	<string name="home">Home</string>	
 	<string name="settings">Configurações</string>
 	<string name="btnGetLocation">Buscar Localização</string>
+	<string name="btnAutoLocation">Localização Automática</string>
+	<string name="WinMap">Mapa</string>
 </resources>

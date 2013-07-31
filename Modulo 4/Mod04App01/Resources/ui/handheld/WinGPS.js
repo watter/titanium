@@ -25,10 +25,10 @@ module.exports = (function() {
 			top: '10dp'
 		});
 		
+		Ti.Geolocation.Android.manualMode = false;
+		Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
+		
 		btnGetLocation.addEventListener('click', function() {
-			
-			Ti.Geolocation.Android.manualMode = false;
-			Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_HIGH;
 			
 			Ti.Geolocation.getCurrentPosition(function(e) {
 				
@@ -38,7 +38,8 @@ module.exports = (function() {
 					lblInfo.setColor('red');
 				} else {
 					
-					Ti.API.info(e.coords);
+					Ti.API.info('Lat: ' + e.coords.latitude + ' Lon: ' + e.coords.longitude);
+					
 					lblInfo.setText('Lat: ' + e.coords.latitude + '\n' +
 									'Lon: ' + e.coords.longitude);
 					lblInfo.setColor('black');
@@ -93,6 +94,7 @@ module.exports = (function() {
 			});
 		});
 		
+		win.add(btnAutoLocation);
 		win.add(btnGetLocation);
 		
 	} else {
