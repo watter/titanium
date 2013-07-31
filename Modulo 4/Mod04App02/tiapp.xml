@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">zj70OohhBfS3wwRidpAVS6bfQjxzEGGj</property>
+    <property name="acs-oauth-key-production" type="string">d4aPfkN5BiwSTw6gkjnH7TGBZb4Pw8Kw</property>
+    <property name="acs-api-key-production" type="string">ZGecVIAI1VITmsfzFeONYh51JIAnEjdG</property>
+    <property name="acs-oauth-secret-development" type="string">7pZoT8r10nl64ZtFQTxk7mjyZebwRhyX</property>
+    <property name="acs-oauth-key-development" type="string">bsxiYV3aeHikdAiMVCTCOXudvWzYoxaw</property>
+    <property name="acs-api-key-development" type="string">wRz5rBKUpSHtGT2XPE3XHluOAxJVzh2Y</property>
+    <id>br.gov.pr.celepar.mod04app02</id>
+    <name>Mod04App02</name>
+    <version>1.0</version>
+    <publisher>bernardosoliveira</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2013 by bernardosoliveira</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>f20e6b6d-c40f-429b-94fa-95099c13ce3c</guid>
+    <property name="ti.ui.defaultunit" type="string">system</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs">ti.cloud</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">false</target>
+        <target device="mobileweb">false</target>
+        <target device="tizen">false</target>
+    </deployment-targets>
+    <sdk-version>3.1.1.GA</sdk-version>
+</ti:app>
