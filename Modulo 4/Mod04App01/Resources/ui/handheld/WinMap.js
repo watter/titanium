@@ -27,19 +27,18 @@ module.exports = (function() {
 	var playServices = MapMod.isGooglePlayServicesAvailable();
 	switch(playServices) {
 		case MapMod.SUCCESS:
-		 case MapModule.SUCCESS:
 	        Ti.API.info('Google Play services is installed.');
 	        break;
-	    case MapModule.SERVICE_MISSING:
+	    case MapMod.SERVICE_MISSING:
 	        alert('Google Play services is missing. Please install Google Play services from the Google Play store.');
 	        break;
-	    case MapModule.SERVICE_VERSION_UPDATE_REQUIRED:
+	    case MapMod.SERVICE_VERSION_UPDATE_REQUIRED:
 	        alert('Google Play services is out of date. Please update Google Play services.');
 	        break;
-	    case MapModule.SERVICE_DISABLED:
+	    case MapMod.SERVICE_DISABLED:
 	        alert('Google Play services is disabled. Please enable Google Play services.');
 	        break;
-	    case MapModule.SERVICE_INVALID:
+	    case MapMod.SERVICE_INVALID:
 	        alert('Google Play services cannot be authenticated. Reinstall Google Play services.');
 	        break;
 	    default:
@@ -47,24 +46,32 @@ module.exports = (function() {
 	        break;
 	}
 	
-	var map = MapMod.createView({
-		mapType: MapMod.NORMAL_TYPE,
-		/* Tipos de Mapas:
-		 * ti.map.NORMAL_TYPE
-		 * ti.map.TERRAIN_TYPE
-		 * ti.map.SATELLITE_TYPE
-		 * ti.map.HYBRID_TYPE
-		 */
-		region: {
-			latitude: -25.414904,
-			longitude: -49.274567,
-			latitudeDelta: 0.1,
-			longitudeDelta: 0.1 
-		},
-		userLocation: true
-	}) ;
+	win.addEventListener('focus', function() {
+		
+		addMap();
+	});
 	
-	win.add(map);
+	function addMap() {
+		
+		var map = MapMod.createView({
+			mapType: MapMod.NORMAL_TYPE,
+			/* Tipos de Mapas:
+			 * ti.map.NORMAL_TYPE
+			 * ti.map.TERRAIN_TYPE
+			 * ti.map.SATELLITE_TYPE
+			 * ti.map.HYBRID_TYPE
+			 */
+			region: {
+				latitude: -25.414904,
+				longitude: -49.274567,
+				latitudeDelta: 0.1,
+				longitudeDelta: 0.1 
+			},
+			userLocation: true
+		}) ;
+		
+		win.add(map);
+	}
 	return win;
 	
 })();
