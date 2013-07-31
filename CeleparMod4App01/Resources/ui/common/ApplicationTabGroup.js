@@ -4,7 +4,7 @@ function ApplicationTabGroup(Window) {
 	
 	//create app tabs
 	var win1 = require('ui/handheld/winGPS'),
-		win2 = new Window(L('settings'));
+		win2 = require('ui/handheld/winMap');
 	
 	var tab1 = Ti.UI.createTab({
 		title: L('home'),

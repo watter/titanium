@@ -28,19 +28,32 @@
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
         </orientations>
     </iphone>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
     <android xmlns:android="http://schemas.android.com/apk/res/android">
         <manifest android:installLocation="auto">
             <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15"/>
             <supports-screens android:anyDensity="false"
                 android:largeScreens="true" android:normalScreens="true" android:smallScreens="false"/>
-            <uses-permission android:name="android.permission.READ_CONTACTS"/>
-            <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-            <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!-- Allows the API to download data from Google Map servers -->
             <uses-permission android:name="android.permission.INTERNET"/>
+            <!-- Allows the API to cache data -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <!-- Use GPS for device location -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!-- Use Wi-Fi or mobile connection for device location -->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <!-- Allows the API to access Google web-based services -->
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <!-- Specify OpenGL ES 2.0 as a requirement -->
+            <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+            <!-- Replace <com.domain.appid> with your application ID -->
+            <uses-permission android:name="br.gov.pr.celepar.mod4app01.permission.MAPS_RECEIVE"/>
+            <permission
+                android:name="br.gov.pr.celepar.mod4app01.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
             <application>
                 <uses-library android:name="com.google.android.maps"/>
+                <!-- Replace "PASTE YOUR GOOGLE MAPS API KEY HERE" with the Google API key you obtained -->
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyD8YGUw7_sfDe7jTom9xT8BBJC215utDIM"/>
             </application>
         </manifest>
     </android>
@@ -52,7 +65,9 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules/>
+    <modules>
+        <module platform="android">ti.map</module>
+    </modules>
     <deployment-targets>
         <target device="iphone">false</target>
         <target device="ipad">false</target>
