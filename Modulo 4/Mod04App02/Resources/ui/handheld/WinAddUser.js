@@ -78,7 +78,7 @@ module.exports = (function() {
 				
 				Ti.API.info('Create User Error - ' + e.message);
 			}
-		})
+		});
 	});
 	
 	win.add(txtUserName);
