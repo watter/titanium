@@ -19,7 +19,24 @@ module.exports = (function() {
 		win.containingTab.open(winNewProduct);
 	});
 	
+	var tvProducts = Ti.UI.createTableView({
+		data: [],
+		top: '10dp',
+		height: '430dp'
+	});
+	
+	Ti.App.addEventListener('app:RefreshProducts', function() {
+		
+		$.session.user.listProducts(function(products) {
+			
+		}, function(error) {
+			
+			alert('Erro: ' + error);
+		});
+	});
+	
 	win.add(btnAdd);
+	win.add(tvProducts);
 	
 	return win;
 	

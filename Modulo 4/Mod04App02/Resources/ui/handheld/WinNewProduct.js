@@ -87,6 +87,8 @@ module.exports = (function() {
 		thisProduct.save(function(product) {
 			
 			Ti.API.info('[WinNewProduct - save] Produto salvo: ' + product.id);
+			
+			Ti.App.fireEvent('app:RefreshProducts');
 		}, function(error) {
 			
 			alert('Erro: ' + error);

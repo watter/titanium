@@ -46,10 +46,17 @@ module.exports = (function() {
 			
 			if(e.success) {
 				
-				$.session.id = $.cloud.sessionId;
-				$.session.user = e.users[0];
+				var User = require('controllers/User');
+				var thisUser = new User({
+					id: e.users[0].id,
+					sessionID: $.cloud.sessionId,
+					name: e.users[0].name
+				});
 				
-				Ti.API.info('Login User - Success! User ID:' + $.session.user.id);
+				$.session.id = $.cloud.sessionId;
+				$.session.user = thisUser;
+				
+				Ti.API.info('Login User - Success! User ID:' + $.session.user.getID());
 				
 				$.session.logged = true;
 				Ti.App.Properties.setBool('userLogged', $.session.logged);
