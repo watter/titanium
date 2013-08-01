@@ -29,6 +29,38 @@ module.exports = (function() {
 		
 		$.session.user.listProducts(function(products) {
 			
+			var productRows = [];
+			
+			for(var i = 0, s = products.length; i < s; i++) {
+				
+				var productRow = Ti.UI.createTableViewRow({
+					layout: 'vertical'
+				});
+				
+				var lblName = Ti.UI.createLabel({
+					text: products[i].name,
+					height: '20dp',
+					top: '5dp',
+					width: '200dp'
+				});
+				
+				var lblDescription = Ti.UI.createLabel({
+					text: products[i].description,
+					height: '20dp',
+					top: '5dp',
+					width: '200dp'
+				});
+				
+				productRow.add(lblName);
+				productRow.add(lblDescription);
+				
+				productRow.product = products[i];
+				
+				productRows.push(productRow);
+			}
+			
+			tvProducts.setData(productRows);
+			
 		}, function(error) {
 			
 			alert('Erro: ' + error);
