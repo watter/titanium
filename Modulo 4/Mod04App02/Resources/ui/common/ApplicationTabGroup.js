@@ -3,7 +3,7 @@ function ApplicationTabGroup() {
 	var self = Ti.UI.createTabGroup();
 	
 	//create app tabs
-	var win1 = require('ui/handheld/WinHome');
+	var win1 = require('ui/handheld/WinProducts');
 	
 	var tab1 = Ti.UI.createTab({
 		title: 'Login',
