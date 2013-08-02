@@ -56,6 +56,9 @@ var $ = {
 				});
 				// tem que ser aqui porque é assincrona a chamada
 				$.session.user = thisUser;
+				Ti.API.info($.session.user);
+				// agora que já temos a informação do usuário, podemos abrir o tabgroup				
+				new $.tabs().open();
 				            
 		    } else {
 		        alert('Error:\n' +
@@ -71,6 +74,9 @@ var $ = {
 		winLogin.open();
 		
 	} else {
-		new $.tabs().open();		
+		// tivemos que remover a abertura do tabgroup daqui por causa da execução em threads. 
+		// Só abrimos o tabgroup depois de recuperar a informação do usuario
+		
+//		new $.tabs().open();		
 	}
 })();
