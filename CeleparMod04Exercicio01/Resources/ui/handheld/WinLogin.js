@@ -63,9 +63,10 @@ module.exports = (function() {
 				
 				
 				// recuperando o token atual 
-				var cloudToken = $.cloud.getAccessToken();
-				Ti.App.Properties.setString('token', cloudToken);
-				$.session.token = cloudToken;
+				var cloudID = $.cloud.getSessionId();
+				Ti.App.Properties.setString('cloudID', cloudID);
+				$.session.cloudID = cloudID;
+							
 								
 				new $.tabs().open();
 			} else {

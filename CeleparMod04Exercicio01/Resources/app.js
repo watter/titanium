@@ -7,7 +7,7 @@ var $ = {
 	session: {
 		user: {},
 		id: {},
-		token: (Ti.App.Properties.getString('token','')), // pega a propriedade token do aplicativo
+		cloudID: Ti.App.Properties.getString('cloudID',''),
 		logged: (Ti.App.Properties.getBool('userLogged') || false)
 	},
 	tabs: {}
@@ -35,10 +35,9 @@ var $ = {
 		winLogin.open();
 		
 	} else {
-
-		// se o token existir, significa que o usuário já está/va logado - use o usuário dele
-		if ( $.session.token != '') {
-			Ti.Cloud.accessToken = $.session.token; 
+		// significa que o usuário já está/va logado - use o usuário dele
+		if ( $.session.cloudID != '') {
+			$.cloud.sessionId = $.session.cloudID;
 		};
 		
 		new $.tabs().open();		
