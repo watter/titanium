@@ -63,10 +63,10 @@ module.exports = (function() {
 				
 				
 				// recuperando o token atual 
-				var cloudID = $.cloud.getSessionId();
+				var cloudID = $.cloud.sessionId;
 				Ti.App.Properties.setString('cloudID', cloudID);
 				$.session.cloudID = cloudID;
-							
+				Ti.API.info('[Winlogin - cloudID] ' + $.session.cloudID);
 								
 				new $.tabs().open();
 			} else {

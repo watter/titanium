@@ -28,18 +28,49 @@ var $ = {
 	var winLogin = require('ui/handheld/WinLogin');
 	$.tabs = require('ui/common/ApplicationTabGroup');
 	
+	if ( $.session.cloudID != '') {
+		$.cloud.sessionId = $.session.cloudID;
+		$.session.logged = true;
+		Ti.App.Properties.setBool('userLogged', $.session.logged);
 
+		// Recuperando as informações do usuário com base na seção 
+
+   		var User = require('controllers/User');
+		var thisUser = {};
+		
+		// recupera informações do usuario 
+		
+		$.cloud.Users.showMe(function (e) {
+		    if (e.success) {
+		        var user = e.users[0];
+
+		        alert('Success:\n' +
+		            'id: ' + user.id + '\n' +
+		            'first name: ' + user.first_name + '\n' +
+		            'last name: ' + user.last_name);
+            
+				thisUser = new User({
+					id: e.users[0].id,
+					sessionID: $.cloud.sessionId,
+					name: e.users[0].name
+				});
+				// tem que ser aqui porque é assincrona a chamada
+				$.session.user = thisUser;
+				            
+		    } else {
+		        alert('Error:\n' +
+		            ((e.error && e.message) || JSON.stringify(e)));
+		    }
+		});
+				
+		$.session.id = $.cloud.sessionId;
+		
+	};
 	
 	if(!$.session.logged) {
-		
 		winLogin.open();
 		
 	} else {
-		// significa que o usuário já está/va logado - use o usuário dele
-		if ( $.session.cloudID != '') {
-			$.cloud.sessionId = $.session.cloudID;
-		};
-		
 		new $.tabs().open();		
 	}
 })();
