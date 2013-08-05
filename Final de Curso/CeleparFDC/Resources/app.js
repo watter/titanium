@@ -15,6 +15,15 @@ if (Ti.version < 1.8 ) {
 	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
 }
 
+var $ = {};
+
+$.api = require('controllers/Expresso');
+$.api = new $.api({ url: "http://demo.expressolivre.org/api/rest/" });
+
+
+
+
+
 // This is a single context application with mutliple windows in a stack
 (function() {
 	//determine platform and form factor and render approproate components
@@ -34,6 +43,31 @@ if (Ti.version < 1.8 ) {
 	else {
 		Window = require('ui/handheld/ApplicationWindow');
 	}
+	
+	$.api.execute("Login",{user: "demo","password": "demo22"},
+		function (result) {
+			alert(JSON.stringify(result));
+			
+			$.api.execute("Mail/Messages",{folderID: "INBOX",search: "", page: 1, resultsPerPage: 10 },
+			function (result) {
+				alert(JSON.stringify(result));
+			},function(error) {
+				alert(JSON.stringify(error));
+			});
+			
+			
+			$.api.execute("Catalog/Contacts",{contactType: "1",search: "" },
+			function (result) {
+				alert(JSON.stringify(result));
+			},function(error) {
+				alert(JSON.stringify(error));
+			});
+			
+		},
+		function (error) {
+			alert(JSON.stringify(error));
+		}
+	);
 
 	var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 	new ApplicationTabGroup(Window).open();
