@@ -34,23 +34,19 @@
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
         </orientations>
     </iphone>
-       <android xmlns:android="http://schemas.android.com/apk/res/android" >
-	    <manifest android:installLocation="preferExternal" >
-	        <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15" />
-	        <supports-screens
-	            android:smallScreens="false"
-	            android:normalScreens="true"
-	            android:largeScreens="true"
-	            android:anyDensity="false"
-	        />
-	        <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+	<manifest android:installLocation="preferExternal" >
+            <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="15"/>
+            <supports-screens android:anyDensity="false"
+                android:largeScreens="true" android:normalScreens="true" android:smallScreens="false"/>
+            <uses-permission android:name="android.permission.READ_CONTACTS"/>
             <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-	        <application>
+            <application>
 	            <uses-library android:name="com.google.android.maps"/>  
-	        </application>
-	    </manifest>
-	</android>
-     <mobileweb>
+            </application>
+        </manifest>
+    </android>
+    <mobileweb>
         <precache/>
         <splash>
             <enabled>true</enabled>

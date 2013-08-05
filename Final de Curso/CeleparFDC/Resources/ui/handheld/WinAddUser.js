@@ -1,0 +1,119 @@
+module.exports = (function() {
+    
+    var win = Ti.UI.createWindow({
+        title: 'Add User',
+        backgroundColor: 'white',
+        layout: 'vertical'
+    });
+    
+    var txtUserName = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Login...',
+        top: 20
+    });
+    
+    var txtPassword = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Senha...',
+        top: 10,
+        passwordMask: true
+    });
+    
+    txtPassword.addEventListener('blur', function() {
+       
+       if(txtPassword.value.length<4){
+           alert('Senha precisa de 4 digitos!');
+       }
+    });
+    
+    var txtPasswordConfirmation = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Confirmação de senha...',
+        top: 10,
+        passwordMask: true
+    });
+    
+   txtPasswordConfirmation.addEventListener('blur', function() {
+       
+       if(!txtPassword.value==txtPasswordConfirmation.value){
+           alert('Confirmação não confere!');
+       }
+    });
+    
+    
+    
+    var txtEmail = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Email...',
+        top: 10
+    });
+    
+
+    var txtFirstName = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Nome...',
+        top: 10
+    });
+    
+    var txtLastName = Ti.UI.createTextField({
+        height: '50dp',
+        width: '200dp',
+        keyboardType: Ti.UI.KEYBOARD_APPEARANCE_DEFAULT,
+        hintText: 'Sobrenome...',
+        top: 10
+    }); 
+    
+    var btnAddUser = Ti.UI.createButton({
+        title: 'Salvar',
+        height: '50dp',
+        width: '200dp',
+        top: 20
+    });
+    
+    btnAddUser.addEventListener('click', function() {
+        
+        $.cloud.Users.create({
+            username: txtUserName.value,
+            password: txtPassword.value,
+            password_confirmation: txtPasswordConfirmation.value,
+            email:txtEmail.value,
+            first_name: txtFirstName.value,
+            last_name: txtLastName.value
+        }, function(e) {
+            
+            if(e.success) {
+                
+                var user = e.users[0];
+                Ti.API.info('Create User - User ID:' + user.id + ' | Session ID: ' + $.cloud.sessionId);
+                
+                $.session.logged = true;
+                Ti.App.Properties.setBool('userLogged', $.session.logged);
+                
+                new $.tabs().open();
+            } else {
+                
+                Ti.API.info('Create User Error - ' + e.message);
+            }
+        });
+    });
+    
+    win.add(txtUserName);
+    win.add(txtPassword);
+    win.add(txtPasswordConfirmation);
+    win.add(txtEmail);
+    win.add(txtFirstName);
+    win.add(txtLastName);
+    win.add(btnAddUser);
+    
+    return win;
+})();
