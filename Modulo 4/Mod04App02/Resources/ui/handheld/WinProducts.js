@@ -7,7 +7,6 @@ module.exports = (function() {
 	});
 	
 	function refreshProducts(products) {
-			
 			var productRows = [];
 			
 			for(var i = 0, s = products.length; i < s; i++) {
@@ -50,7 +49,6 @@ module.exports = (function() {
 	});
 	
 	btnAdd.addEventListener('click', function() {
-		
 		var winNewProduct = require('ui/handheld/WinNewProduct');
 		win.containingTab.open(winNewProduct);
 	});
@@ -62,17 +60,13 @@ module.exports = (function() {
 	});
 	
 	Ti.App.addEventListener('app:RefreshProducts', function() {
-		
 		$.session.user.listProducts(refreshProducts, function(error) {
-			
 			alert('Erro: ' + error);
 		});
 	});
 	
 	win.addEventListener('focus', function() {
-		
 		$.session.user.listProducts(refreshProducts, function(error) {
-			
 			alert('Erro: ' + error);
 		});
 	});

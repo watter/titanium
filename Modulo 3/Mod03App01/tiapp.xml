@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">NCsuUJrJLvaCkkoxnOYugVrScL6L2mks</property>
+    <property name="acs-oauth-key-production" type="string">tP6sENDCsB1msfE6E5x2YKSfW5VIeZqD</property>
+    <property name="acs-api-key-production" type="string">df0zOq7zOKmIAEMVIPRfqG3PGAJQ61sH</property>
+    <property name="acs-oauth-secret-development" type="string">sjzVe3b8K1zEbfnu4SoUD8Lvkh1iC5od</property>
+    <property name="acs-oauth-key-development" type="string">ROKITQFkCL5n3bXeZBX70JnhGKI7jJok</property>
+    <property name="acs-api-key-development" type="string">z604BCqdUkmzCr4HNQNxeT7kGT2SFd8Q</property>
     <id>br.gov.pr.celepar.Mod03App01</id>
     <name>Mod03App01</name>
     <version>1.0</version>
@@ -49,6 +55,7 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
+        <module platform="commonjs">ti.cloud</module>
         <module platform="android">facebook</module>
     </modules>
     <deployment-targets>

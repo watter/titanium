@@ -3,18 +3,18 @@ function ApplicationTabGroup(Window) {
 	var self = Ti.UI.createTabGroup();
 	
 	//create app tabs
-	var win1 = new Window(L('home')),
-		win2 = require('ui/handheld/WinContacts');
+	var win1 = require('ui/handheld/WinContacts'),
+		win2 = require('ui/handheld/WinMessages');
 	
 	var tab1 = Ti.UI.createTab({
-		title: L('home'),
+		title: 'Contacts',
 		icon: '/images/KS_nav_ui.png',
 		window: win1
 	});
 	win1.containingTab = tab1;
 	
 	var tab2 = Ti.UI.createTab({
-		title: L('settings'),
+		title: 'Messages',
 		icon: '/images/KS_nav_views.png',
 		window: win2
 	});

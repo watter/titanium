@@ -4,15 +4,22 @@ module.exports = (function() {
 		backgroundColor : 'black'
 	});
 
+	var Message = require('controllers/Message');
 	var defaultFontSize = Ti.Platform.name === 'android' ? 16 : 14;
 	var tableData = [];
+	
+	var tableView = Ti.UI.createTableView({
+		backgroundColor : 'white',
+		data : tableData,
+		top : '80dp'
+	});
 
-	for (var i = 1; i <= 20; i++) {
+	function pushMessage(rowId, message) {
 
 		var row = Ti.UI.createTableViewRow({
 			className : 'forumEvent', // used to improve table performance
 			selectedBackgroundColor : 'white',
-			rowIndex : i, // custom property, useful for determining the row during events
+			rowIndex : rowId, // custom property, useful for determining the row during events
 			height : 110
 		});
 
@@ -32,7 +39,7 @@ module.exports = (function() {
 				fontSize : defaultFontSize + 6,
 				fontWeight : 'bold'
 			},
-			text : 'Assunto ' + i,
+			text : message.from,
 			left : 70,
 			top : 6,
 			width : 200,
@@ -47,59 +54,75 @@ module.exports = (function() {
 				fontSize : defaultFontSize + 2,
 				fontWeight : 'normal'
 			},
-			text : 'Parte da Descrição..',
+			text : message.text,
 			left : 70,
 			top : 44,
 			width : 360
 		});
 		row.add(labelDetails);
 
-		tableData.push(row);
+		tableView.appendRow(row);
 	}
 
-	var tableView = Ti.UI.createTableView({
-		backgroundColor : 'white',
-		data : tableData,
-		top: '80dp'
-	});
-	
+	function refreshMessages(messages) {
+
+		Ti.API.info(messages);
+
+		for (var i = 0, s = messages.length; i < s; i++) {
+			pushMessage(i,messages[i]);
+		}
+	}
+
 	var txtMessage = Ti.UI.createTextArea({
-		top:0,
-		left: 0,
-		width: '225dp',
-		height: '80dp',
-		borderWidth: '2dp',
-		borderColor: 'black'
+		top : 0,
+		left : 0,
+		width : '225dp',
+		height : '80dp',
+		borderWidth : '2dp',
+		borderColor : 'black'
 	});
-	
+
 	var btnSend = Ti.UI.createButton({
-		title: 'Send',
-		width: '100dp',
-		height: '80dp',
-		right: 0,
-		top: 0
+		title : 'Send',
+		width : '100dp',
+		height : '80dp',
+		right : 0,
+		top : 0
 	})
-	
-	btnSend.addEventListener('click', function(){
-		var Message = require('controllers/Message');
+
+	btnSend.addEventListener('click', function() {
 		var thisMessage = new Message({
-			date: new Date(),
-			from: 'fulano@email.com',
-			to: 'cicrano@email.com',
-			text: 'mensagem...'
+			date : new Date(),
+			from : $.session.user.getEmail(),
+			to : 'cicrano@email.com', //capturar conforme o contato selecionado
+			text : txtMessage.getValue()
 		});
-		
+
 		thisMessage.send(function(message) {
 			Ti.API.info('[WinMessage - send] Mensagem enviada: ' + message.id);
-			Ti.App.fireEvent('app:RefreshProducts');
+			Ti.App.fireEvent('app:RefreshMessages');
 		}, function(error) {
 			alert('Erro: ' + error);
-		});	
+		});
 	});
-		
+
 	win.add(txtMessage);
 	win.add(btnSend);
 	win.add(tableView);
-	
+
+	Ti.App.addEventListener('app:RefreshMessages', function() {
+		$.session.user.listMessages(refreshMessages, function(error) {
+		//Message.listMessages(refreshMessages, function(error) {
+			alert('Erro: ' + error);
+		});
+	});
+
+	win.addEventListener('focus', function() {
+		$.session.user.listMessages(refreshMessages, function(error) {
+		//Message.listMessages(refreshMessages, function(error) {
+			alert('Erro: ' + error);
+		});
+	});
+
 	return win;
-})();
+})(); 
