@@ -76,10 +76,32 @@ module.exports = (function() {
 		//win.containingTab.open(winAddUser);
 	});
 	
+	
+	
+	  var btnlogout = Ti.UI.createButton({
+        title: 'Sair do programa',
+        height: '50dp',
+        width: '200dp',
+        color:'black',
+        top: 20
+    });
+    
+btnlogout.addEventListener('click', function() {
+    Ti.App.Properties.setBool('userLogged', false);
+    alert('Desconectado!');
+    
+});
+	
+	if(Ti.App.Properties.getBool('userLogged') == false){
 	win.add(txtUserName);
 	win.add(txtPassword);
 	win.add(btnLogin);
 	win.add(btnRegister);
+	}
+	else{
+	    win.add(btnlogout);
+	}
+	
 	
 	return win;
 	
